@@ -9,14 +9,14 @@ public class midterms {
     static ArrayList<Integer> age = new ArrayList<>();// Collects age
     static Scanner sc = new Scanner(System.in);//Scanner input
 
-    public static void listEmpty() {//Empty list message
+    public static void listEmpty() {//Displays Empty list message
         System.out.print("------------------------\n");
         System.out.print("VIEW ITEMS:\n");
         System.out.print("------------------------\n");
         System.out.print("This list is empty.\n"
                 + "Add some items to get started\n");
         System.out.print("------------------------\n");
-    }
+    }//ListEmpty()
 
     public static void waitLine() { // Pauses the console
         System.out.print("Press ENTER to continue...");
@@ -24,7 +24,7 @@ public class midterms {
             System.in.read();
         } catch (Exception e) {
         }
-    }
+    }//waitLine()
 
     public static void addItem() { // Adds Items
         int entryLimit;
@@ -45,10 +45,12 @@ public class midterms {
         System.out.print("------------------------\n");
         System.out.println("Entries have been added successfully.");
         System.out.print("------------------------\n");
-    }
+    }//addItem
 
     public static void deleteItem() { // Deletes Items
         int arraySize1 = name.size();//Checks if array size is empty or not
+        
+        //Delete Menu
         System.out.print("Delete Items\n"
                 + "-----------------------\n"
                 + "What would you like to delete?\n"
@@ -57,6 +59,8 @@ public class midterms {
                 + "3. Go back\n"
                 + ">> ");
         int op = sc.nextInt();
+        
+        //Delete options
         switch (op) {
             case 1: //Delete a single item
                 if (arraySize1 == 0) {
@@ -65,7 +69,7 @@ public class midterms {
                     viewItems();
                     System.out.print("Select an item to delete (This cannot be undone!)\n"
                             + ">> ");
-                    int del = sc.nextInt();
+                    int del = sc.nextInt();//variable to store index number
                     name.remove(del);
                     age.remove(del);
                     System.out.print("------------------------\n");
@@ -86,6 +90,7 @@ public class midterms {
                             + "|1. Yes | 2. Back |\n"
                             + ">> ");
                     int clr = sc.nextInt();
+                    //Delete all items submenu
                     switch (clr) {
                         case 1://Yes
                             name.clear();
@@ -97,17 +102,17 @@ public class midterms {
 
                         case 2://Back
                             deleteItem();
-                            break;
-                    }
-                }
+                            break;                            
+                    }//end of sub-submenu
+                }//end of delete all items option
                 waitLine();
                 deleteItem();
                 break;
             case 3: //back
                 main(null);
                 break;
-        }
-    }
+        }//end of delete menu
+    }//deleteItem()
 
     public static void viewItems() { // Views items
         int arraySize1 = name.size();//Checks if array size is empty or not
@@ -122,7 +127,7 @@ public class midterms {
             }
             System.out.print("------------------------\n");
         }
-    }
+    }//viewItems()
 
     public static void updateItems() { // Updates array contents
         int arraySize1 = name.size();//Checks if array size is empty or not
@@ -154,7 +159,7 @@ public class midterms {
             System.out.print("------------------------\n");
         }
 
-    }
+    }//updateItems
 
     public static void main(String[] args) { // Main menu
         System.out.print("------------------------\n");
@@ -191,5 +196,5 @@ public class midterms {
                 System.out.print("--PROGRAM FINISHED--\n");
                 System.out.print("------------------------\n");
         }
-    }
+    }//main
 }
