@@ -1,6 +1,7 @@
 # java-midterm-output PORMENTO
 *This is a Simple Database in compliance for midterms*
-Features:
+
+**Features:**
 
 - Add Entries
 - Remove Entries
