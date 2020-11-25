@@ -5,20 +5,20 @@ import java.util.Scanner;
 
 public class midterms {
 
-    static ArrayList<String> name = new ArrayList<>();// Collects string
-    static ArrayList<Integer> age = new ArrayList<>();// Collects age
-    static Scanner sc = new Scanner(System.in);//Scanner nameInputNew
+    static ArrayList<String> names = new ArrayList<>();// Collects string
+    static ArrayList<Integer> ages = new ArrayList<>();// Collects ages
+    static Scanner sc = new Scanner(System.in);//Scanner new_name
 
-    public static void listMsgEmpty() {//Displays Empty list message
+    public static void empty_list_msg() {//Displays Empty list message
         System.out.print("------------------------\n");
         System.out.print("|----CURRENT ITEMS:----|\n");
         System.out.print("------------------------\n");
         System.out.print("This list is empty.\n"
                 + "Add some items to get started\n");
         System.out.print("------------------------\n");
-    }//ListEmpty()
+    }//empty_list_msg()
 
-    public static void waitLine() { // Pauses the console
+    public static void pauseConsole() { // Pauses the console
         System.out.print("Press ENTER to continue...");
         try {
             System.in.read();
@@ -30,17 +30,17 @@ public class midterms {
         int entryLimit;
         System.out.print("How many entries would you like to add?\n"
                 + ">> ");
-        entryLimit = sc.nextInt();//Tells how much is the entry limit for the for loop
+        entryLimit = sc.nextInt();//Tells how much is the nameEntry limit for the for loop
         for (int i = 0; i < entryLimit; i++) {
             System.out.print("Enter name:\n"
                     + ">> ");
-            String entry = sc.next();
-            entry += sc.nextLine();//Ensures that the entire sentence is captured
-            name.add(entry);
+            String nameEntry = sc.next();
+            nameEntry += sc.nextLine();//Ensures that the entire sentence is captured
+            names.add(nameEntry);
             System.out.print("Enter age:\n"
                     + ">> ");
-            int entryAge = sc.nextInt();
-            age.add(entryAge);
+            int ageEntry = sc.nextInt();
+            ages.add(ageEntry);
         }
         System.out.print("------------------------\n");
         System.out.println("Entries have been added successfully.");
@@ -48,7 +48,7 @@ public class midterms {
     }//addItem
 
     public static void deleteItem() { // Deletes Items
-        int arraySize = name.size();//Checks if array size is empty or not
+        int arraySize = names.size();//Checks if array size is empty or not
 
         //Delete Menu
         System.out.println();
@@ -60,48 +60,50 @@ public class midterms {
                 + "2. Delete all items\n"
                 + "3. Go back\n"
                 + ">> ");
-        int op = sc.nextInt();
+        int option = sc.nextInt();
 
         //Delete options
-        switch (op) {
+        switch (option) {
             case 1: //Delete a single item
                 if (arraySize == 0) {
-                    listMsgEmpty();
+                    empty_list_msg();
                 } else {
                     viewItems();
                     System.out.print("Select an item to delete (This cannot be undone!)\n"
                             + ">> ");
-                    int delIndexNumber = sc.nextInt();//variable to store index number
-                    while (delIndexNumber > arraySize - 1) {//checks if array size exists
+                    int indexNumber = sc.nextInt();//variable to store index number
+                    
+                    //loop only runs is user selects non-existent item
+                    while (indexNumber > arraySize - 1) {
                         System.out.print("Item does not exist. Please try again.\n"
                                 + ">> ");
-                        delIndexNumber = sc.nextInt();
+                        indexNumber = sc.nextInt();
                     }
-                    name.remove(delIndexNumber);
-                    age.remove(delIndexNumber);
+                    names.remove(indexNumber);
+                    ages.remove(indexNumber);
                     System.out.print("------------------------\n");
                     System.out.println("Delete success!");
                     System.out.print("------------------------\n");
                 }
-                waitLine();
+                pauseConsole();
                 deleteItem();
                 break;
 
             case 2: //Delete all Items
                 if (arraySize == 0) {
-                    listMsgEmpty();
+                    empty_list_msg();
                 } else {
                     System.out.print("------------------------\n");
                     System.out.print("Are you sure you want to delete ALL items? "
                             + "(This cannot be undone!)\n"
                             + "|1. Yes | 2. Back |\n"
                             + ">> ");
-                    int clr = sc.nextInt();
+                    int clrOption = sc.nextInt();
                     //Delete all items submenu
-                    switch (clr) {
+                    switch (clrOption) {
                         case 1://Yes
-                            name.clear();
-                            age.clear();
+                            names.clear();
+                            ages.clear();
                             System.out.print("------------------------\n");
                             System.out.println("Delete success!");
                             System.out.print("------------------------\n");
@@ -112,7 +114,7 @@ public class midterms {
                             break;
                     }//end of sub-submenu
                 }//end of delete all items option
-                waitLine();
+                pauseConsole();
                 deleteItem();
                 break;
             case 3: //back
@@ -122,51 +124,53 @@ public class midterms {
     }//deleteItem()
 
     public static void viewItems() { // Views items
-        int arraySize = name.size();//Checks if array size is empty or not
+        int arraySize = names.size();//Checks if array size is empty or not
         if (arraySize == 0) {
-            listMsgEmpty();
+            empty_list_msg();
         } else {
             System.out.print("------------------------\n");
             System.out.print("|----CURRENT ITEMS:----|\n");
             System.out.print("------------------------\n");
-            for (int i = 0; i < name.size(); i++) {
-                System.out.println(i + ". " + name.get(i) + " is " + age.get(i));
+            for (int i = 0; i < names.size(); i++) {
+                System.out.println(i + ". " + names.get(i) + " is " + ages.get(i));
             }
             System.out.print("------------------------\n");
         }
     }//viewItems()
 
     public static void updateItems() { // Updates array contents
-        int arraySize = name.size();//Checks if array size is empty or not
+        int arraySize = names.size();//Checks if array size is empty or not
         if (arraySize == 0) {
-            listMsgEmpty();
+            empty_list_msg();
         } else {
             System.out.print("------------------------\n");
             System.out.print("|-----UPDATE ITEMS-----|\n");
             System.out.print("------------------------\n");
             viewItems();
-            int indexPos;//index position
-            String nameInputNew;//change values nameInputNew
+            int indexPosition;//index position
+            String new_name;//change values new_name
             System.out.print("Choose an item to change:\n"
                     + ">> ");
-            indexPos = sc.nextInt();
-            while (indexPos > arraySize - 1) {//Checks if index position exists
+            indexPosition = sc.nextInt();
+            
+            //loop only runs is user selects non-existent item
+            while (indexPosition > arraySize - 1) {
                 System.out.print("Item does not exist. Please try again.\n"
                         + ">> ");
-                indexPos = sc.nextInt();
+                indexPosition = sc.nextInt();
             }
 
             System.out.print("Enter new name: \n"
                     + ">> ");
-            nameInputNew = sc.next();
-            nameInputNew += sc.nextLine();
+            new_name = sc.next();
+            new_name += sc.nextLine();
 
-            name.set(indexPos, nameInputNew);
+            names.set(indexPosition, new_name);
             //      index position, user input value
             System.out.print("Enter new age: \n"
                     + ">> ");
-            int ageInputNew = sc.nextInt();
-            age.set(indexPos, ageInputNew);
+            int new_age = sc.nextInt();
+            ages.set(indexPosition, new_age);
             System.out.print("------------------------\n");
             System.out.print("Update successful!\n");
             System.out.print("------------------------\n");
@@ -189,7 +193,7 @@ public class midterms {
         switch (op) {
             case 1: //Add Item
                 addItem();
-                waitLine();
+                pauseConsole();
                 main(null);
                 break;
             case 2: //Delete Item
@@ -197,12 +201,12 @@ public class midterms {
                 break;
             case 3: //View Items
                 viewItems();
-                waitLine();
+                pauseConsole();
                 main(null);
                 break;
             case 4: //Update Entries
                 updateItems();
-                waitLine();
+                pauseConsole();
                 main(null);
                 break;
             default: //exit
