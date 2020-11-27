@@ -73,7 +73,7 @@ public class midterms {
                             + ">> ");
                     int indexNumber = sc.nextInt();//variable to store index number
                     
-                    //loop only runs is user selects non-existent item
+                    //loop only runs if user selects non-existent item
                     while (indexNumber > arraySize - 1) {
                         System.out.print("Item does not exist. Please try again.\n"
                                 + ">> ");
@@ -153,7 +153,7 @@ public class midterms {
                     + ">> ");
             indexPosition = sc.nextInt();
             
-            //loop only runs is user selects non-existent item
+            //loop only runs if user selects non-existent item
             while (indexPosition > arraySize - 1) {
                 System.out.print("Item does not exist. Please try again.\n"
                         + ">> ");
